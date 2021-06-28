@@ -1,5 +1,6 @@
 package ewallet.sample;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +31,37 @@ public class FileManager {
 			e.printStackTrace();
 		}
 		return userList;				
+	}
+	
+	public void createFolderFiles() throws IOException {
+		File desktop = new File(System.getenv("user.home") + File.separator +  "Desktop");
+		File folder = new File(desktop, "ewallet");
+		File userfile = new File(desktop, "users.json");
+		File transactionfile = new File(desktop, "transactions.json");
+		if (!folder.exists()) {
+			folder.mkdir();		
+			userfile.createNewFile();
+			transactionfile.createNewFile();
+		}
+	}
+	
+	public ArrayList<String> readInput(String file) {
+		JSONParser jsonParser = new JSONParser();
+		ArrayList<String> dataList = new ArrayList<String>();
+		
+		try (FileReader reader = new FileReader(file)) {
+			
+			Object obj = jsonParser.parse(reader);
+			JSONArray jsonDataList = (JSONArray) obj;
+			if (jsonDataList != null) {
+				for (int i= 0; i<jsonDataList.size(); i++) {
+					dataList.add((String) jsonDataList.get(i));
+				}
+			}			
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
+		return dataList;
 	}
 	
 	private static User parseUserObject(Object object) {

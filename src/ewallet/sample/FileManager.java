@@ -34,10 +34,10 @@ public class FileManager {
 	}
 	
 	public void createFolderFiles() throws IOException {
-		File desktop = new File(System.getenv("user.home") + File.separator +  "Desktop");
+		File desktop = new File(System.getProperty("user.home") + File.separator +  "Desktop");
 		File folder = new File(desktop, "ewallet");
-		File userfile = new File(desktop, "users.json");
-		File transactionfile = new File(desktop, "transactions.json");
+		File userfile = new File(folder, "users.json");
+		File transactionfile = new File(folder, "transactions.json");
 		if (!folder.exists()) {
 			folder.mkdir();		
 			userfile.createNewFile();
@@ -54,9 +54,7 @@ public class FileManager {
 			Object obj = jsonParser.parse(reader);
 			JSONArray jsonDataList = (JSONArray) obj;
 			if (jsonDataList != null) {
-				for (int i= 0; i<jsonDataList.size(); i++) {
-					dataList.add((String) jsonDataList.get(i));
-				}
+				
 			}			
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();

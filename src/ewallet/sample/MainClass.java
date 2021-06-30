@@ -26,12 +26,14 @@ public class MainClass {
 		userList = fm.readDataFile(userFile);
 		
 		inputList = fm.readInput(console.nextLine());
+		String email;
+		
 		if (inputList.contains("transferee")) {
 			
 		} else if (inputList.contains("transactions")) {
 			
 		} else {
-			
+
 		}
 	}
 

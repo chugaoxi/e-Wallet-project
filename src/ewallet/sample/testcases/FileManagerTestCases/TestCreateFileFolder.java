@@ -1,4 +1,4 @@
-package ewallet.sample.testcases;
+package ewallet.sample.testcases.FileManagerTestCases;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import ewallet.sample.FileManager;
 
-class testFileManager {
+class TestCreateFileFolder {
 
 	private FileManager fileManager;
 	File folder, fileUser, fileTransact;

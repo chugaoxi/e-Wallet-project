@@ -1,8 +1,15 @@
 package ewallet.sample;
 
+import org.json.simple.JSONObject;
+
 public class User {
 	static String email = new String();
 	static double credits;
+	
+	public User(String email, double credits) {
+		this.email = email;
+		this.credits = credits;
+	}
 	
 	public static String getUserEmail() {
 		return email;		
@@ -20,9 +27,12 @@ public class User {
 		credits = newCredits;
 	}
 	
-	public static void newUser(String mail) {
-		email = mail;
-		credits = 10000.0;
+	public static JSONObject newUser(String email) {
+		JSONObject user = new JSONObject();
+		user.put("email", email);
+		user.put("balance", 10000.0);
+		return user;
+		
 	}
 
 }
